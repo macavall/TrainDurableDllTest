@@ -1,5 +1,20 @@
 {
-    "version": "2.0",
+  "version": "2.0",
+  "extensions": {
+    "durableTask": {
+      "hubName": "hub1",
+      "maxConcurrentActivityFunctions": 1,
+      "maxConcurrentOrchestratorFunctions": 1,
+      "storageProvider": {
+        "partitionCount": 1,
+        "maxQueuePollingInterval": "00:01:00",
+        "controlQueueBatchSize": 1,
+        "controlQueueBufferThreshold": 1,
+        "controlQueueVisibilityTimeout": "00:01:00",
+        "workItemQueueVisibilityTimeout": "00:01:00"
+      }
+    }
+  },
     "logging": {
         "applicationInsights": {
             "samplingSettings": {
