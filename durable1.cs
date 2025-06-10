@@ -3,7 +3,9 @@ using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.DurableTask;
 using Microsoft.DurableTask.Client;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TrainDurableDllTest;
@@ -31,6 +33,9 @@ public static class durable1
     public static string SayHello([ActivityTrigger] string name, FunctionContext executionContext)
     {
         ILogger logger = executionContext.GetLogger("SayHello");
+
+        Thread.Sleep(Convert.ToInt32(Environment.GetEnvironmentVariable("delay")));
+
         logger.LogInformation("Saying hello to {name}.", name);
         return $"Hello {name}!";
     }
